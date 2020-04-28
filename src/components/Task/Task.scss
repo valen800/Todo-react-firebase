@@ -27,6 +27,9 @@
           cursor: pointer;
           fill: #45da00;
         }
+        &.completed {
+          fill: #45da00;
+        }
       }
     }
 
