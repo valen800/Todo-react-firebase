@@ -10,7 +10,8 @@ import "./AddTasks.scss";
 
 const db = firebase.firestore(firebase);
 
-export default function AddTasks() {
+export default function AddTasks(props) {
+  const { setReloadTasks } = props;
   const [task, setTask] = useState("");
 
   const onSubmit = (e) => {
@@ -25,10 +26,12 @@ export default function AddTasks() {
         .then(() => {
           console.log("Tarea creada");
         })
-        .catch(() => {
-          console.log("Error");
+        .catch((e) => {
+          console.log(e);
         });
     }
+    setReloadTasks(true);
+    setTask("");
   };
 
   return (
@@ -37,6 +40,7 @@ export default function AddTasks() {
         type="text"
         placeholder="Nueva tarea"
         onChange={(e) => setTask(e.target.value)}
+        value={task}
       />
       <Button type="submit">
         <Send />
